@@ -91,7 +91,11 @@ class MyApp:
 
 	    
 	    
-	    # Insert the code here to make the target move, bouncing on the edges    
+	    # Insert the code here to make the target move, bouncing on the edges  
+	if targetx2 > drawpad.winfo_width():
+	    direction = -1
+	     
+	          
 	        
 	        
             
