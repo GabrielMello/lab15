@@ -86,6 +86,8 @@ class MyApp:
 	    global target
 	    global direction
 	    
+	    
+	    
 
 	    
 	    
