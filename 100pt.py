@@ -85,25 +85,19 @@ class MyApp:
 	def animate(self):
 	    global target
 	    global direction
-	    
-	    
-	    
-
-	    
-	    
+	    targetx1,targety1,targetx2,targety2 = drawpad.coords(target)
 	    # Insert the code here to make the target move, bouncing on the edges  
-	if targetx2 > drawpad.winfo_width():
-	    direction = -1
-	     
-	          
-	        
-	        
-            
-            
+            if targetx2 > drawpad.winfo_width():
+               	    direction = -1
+            elif targetx1 < 0:
+                direction = 1
+            drawpad.move(target,direction,0)
             #  This will trigger our collision detect function
             didWeHit = self.collisionDetect()
             # Use the value of didWeHit to create an if statement
             # that determines whether to run drawpad.after(1,self.animate) or not
+            if didWeHit == False:
+                drawpad.after(5,self.animate)
             
 	# Use a function to do our collision detection
 	def collisionDetect(self):
@@ -112,7 +106,13 @@ class MyApp:
                 global player
                 # Get the co-ordinates of our player AND our target
                 # using x1,y1,x2,y2 = drawpad.coords(object)
+                targetx1,targety1,targetx2,targety2 = drawpad.coords(target)
+                x1,y1,x2,y2 = drawpad.coords(player)
 
+                if (x1 > targetx1 and x2 < targetx2) and (y1 > targety1 and y2 < targety2):
+                    return True
+                else:
+                    return False
                 # Do your if statement - remember to return True if successful!                
 		
 myapp = MyApp(root)
